@@ -17,7 +17,7 @@ module Orizuru
     end
 
     conn.authorization :Bearer, token
-    conn.response :json
+    # conn.response :json
 
     Orizuru::Client.new(conn)
   end
