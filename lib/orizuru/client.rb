@@ -10,26 +10,30 @@ module Orizuru
     # @return [Array<Orizuru::App>]
     def apps
       response = @connection.get '/apps'
+
       result = []
+
       response.body.each do |app|
-        units = []
-        app = (@connection.get '/apps/' + app['name']).body
-
-        app['units'].each do |unit|
-          units.push Unit.new(unit['ID'], unit['Name'], unit['Status'])
-        end
-
-        p app['repository']
-        app = App.new(app['name'],
-                      app['ip'],
-                      app['cname'],
-                      app['repository'],
-                      units)
-
-        result.push app
+        result.push app(app['name'])
       end
 
       return result
+    end
+
+    # @return [Orizuru::App]
+    def app(app_name)
+      app = (@connection.get '/apps/%s' % app_name).body
+
+      units = []
+      app['units'].each do |unit|
+        units.push Unit.new(unit['ID'], unit['Name'], unit['Status'])
+      end
+
+      App.new(app['name'],
+              app['ip'],
+              app['cname'],
+              app['repository'],
+              units)
     end
   end
 end
