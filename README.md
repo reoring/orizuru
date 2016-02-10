@@ -23,7 +23,7 @@ Or install it yourself as:
 ### Get application info
 
 ```ruby
-require 'Orizuru'
+require 'orizuru'
 client = Orizuru.create('http://YOUR_TSURU_HOST', 'YOUR_TSURU_TOKEN')
 
 app = client.app('application_name')
@@ -32,7 +32,7 @@ app = client.app('application_name')
 ### Get applications
 
 ```ruby
-require 'Orizuru'
+require 'orizuru'
 client = Orizuru.create('http://YOUR_TSURU_HOST', 'YOUR_TSURU_TOKEN')
 
 client.apps.each do |app|
