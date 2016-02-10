@@ -1,4 +1,4 @@
-require 'Orizuru'
+require 'orizuru'
 client = Orizuru.create('http://192.168.50.4:8080', 'Use your tsuru token')
 
 client.apps.each do |app|
